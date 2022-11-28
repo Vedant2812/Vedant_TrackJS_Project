@@ -87,6 +87,15 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "008aff7de8cc4bf08c16020639887191",
+      application: "error"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -97,10 +106,124 @@
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
-
+                        
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
+    let consoleLog = errorBtns[0];
+    consoleLog.addEventListener('click', e => {
+      //prints output
+      console.log(document.querySelector('output'));
+    });
+
+    let consoleErr = errorBtns[1];
+    consoleErr.addEventListener('click', e => {
+      //prints output
+      console.error('Incorrect calculation');
+    });
+
+    let consoleCount = errorBtns[2];
+    consoleCount.addEventListener('click', e => {
+      //prints output
+      console.count('calculations');
+    });
+
+    let consoleWarn = errorBtns[3];
+    consoleWarn.addEventListener('click', e => {
+      //prints output
+      console.warn('check input');
+    });
+
+    let consoleAssert = errorBtns[4];
+    consoleAssert.addEventListener('click', e => {
+      //prints output
+      const x = document.querySelector('#first-num').value;
+      const y = document.querySelector('#second-num').value;
+      const z = document.querySelector('output');
+      const operator = document.querySelector('#operator').value;
+      const reason = 'the expression is not evaluated correctly';
+      console.log(eval(`${x} ${operator} ${y}`), reason);
+    });
+
+    let consoleClr = errorBtns[5];
+    consoleClr.addEventListener('click', e => {
+      //prints output
+      console.clear();
+    });
+
+    let consoleDir = errorBtns[6];
+    consoleDir.addEventListener('click', e => {
+      //prints output
+      console.dir(document.head);
+    });
+
+    let consoleDirxml = errorBtns[7];
+    consoleDirxml.addEventListener('click', e => {
+      //prints output
+      console.dirxml(document);
+    });
+
+    let consoleStr = errorBtns[8];
+    const label = 'inputs and output';
+    consoleStr.addEventListener('click', e => {
+      //prints output
+      console.group(label);
+    });
+
+    let consoleEnd = errorBtns[9];
+    consoleEnd.addEventListener('click', e => {
+      //prints output
+      console.groupEnd(label);
+    });
+
+    let consoleTab = errorBtns[10];
+    consoleTab.addEventListener('click', e => {
+      //prints output
+      const firstNum = document.querySelector('#first-num').value;
+      const secondNum = document.querySelector('#second-num').value;
+      const output = document.querySelector('output');
+      var calculation = [
+        {
+          firstNumber: firstNum,
+          secondNumber: secondNum,
+          output: output.innerHTML,
+        }
+      ];
+      console.table(calculation);
+    });
+
+    let consoleStrTimer = errorBtns[11];
+    consoleStrTimer.addEventListener('click', e => {
+      //prints output
+      console.time();
+    });
+
+    let consoleEndTimer = errorBtns[12];
+    consoleEndTimer.addEventListener('click', e => {
+      //prints output
+      console.timeEnd();
+    });
+
+    let consoleTrace = errorBtns[13];
+    consoleTrace.addEventListener('click', e => {
+      //prints output
+      const num1 = () => { num2(); };
+      const num2 = () => { output(); };
+      const output = () => { console.trace(); };
+      num1();
+    });
+
+    function giveError()
+    {
+      console.log('it seems an error has been encountered');
+      Boom('Fake error');
+    }
+    let consoleGlobal = errorBtns[14];
+    consoleGlobal.addEventListener('click', e => {
+      //prints output
+      giveError();
+    });
+
     // You may move this JS to another file if you wish
   </script>
 </body>
