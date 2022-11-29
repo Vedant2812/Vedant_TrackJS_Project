@@ -1,3 +1,33 @@
+/* object literal wrapper to avoid namespace conflicts */
+var AjaxTCRExamples = {};
+ 
+/* URL of your server-side error recording script */
+AjaxTCRExamples.errorReportingURL = "http://ajaxref.com/ch2/setjavascripterror.php";
+ 
+AjaxTCRExamples.encodeValue = function(val)
+{
+ var encodedVal;
+ if (!encodeURIComponent)
+ {
+   encodedVal = escape(val);
+   /* fix the omissions */
+   encodedVal = encodedVal.replace(/@/g, '%40');
+   encodedVal = encodedVal.replace(/\//g, '%2F');
+   encodedVal = encodedVal.replace(/\+/g, '%2B');
+ }
+ else
+ {
+   encodedVal = encodeURIComponent(val);
+   /* fix the omissions */
+   encodedVal = encodedVal.replace(/~/g, '%7E');
+   encodedVal = encodedVal.replace(/!/g, '%21');
+   encodedVal = encodedVal.replace(/\(/g, '%28');
+   encodedVal = encodedVal.replace(/\)/g, '%29');
+   encodedVal = encodedVal.replace(/'/g, '%27');
+ }
+ /* clean up the spaces and return */
+ return encodedVal.replace(/\%20/g,'+'); 
+}    
 AjaxTCRExamples.reportJSError = function (errorMessage,url,lineNumber)
 {
     function sendRequest(url,payload)
