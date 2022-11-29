@@ -214,11 +214,6 @@
       num1();
     });
 
-    function giveError()
-    {
-      Boom('Fake error');
-    }
-
     window.addEventListener("error", (event) => {
       console.log('it seems an error has been encountered');
     });
@@ -226,7 +221,8 @@
     let consoleGlobal = errorBtns[14];
     consoleGlobal.addEventListener('click', e => {
       //prints output
-      giveError();
+      const a = 16;
+      a = 18;
     });
 
     // You may move this JS to another file if you wish
