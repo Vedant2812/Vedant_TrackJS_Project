@@ -113,7 +113,7 @@
     let consoleLog = errorBtns[0];
     consoleLog.addEventListener('click', e => {
       //prints output
-      console.log(document.querySelector('output'));
+      console.log((document.querySelector('output')).innerHTML);
     });
 
     let consoleErr = errorBtns[1];
@@ -142,7 +142,8 @@
       const z = document.querySelector('output');
       const operator = document.querySelector('#operator').value;
       const reason = 'the expression is not evaluated correctly';
-      console.log(eval(`${x} ${operator} ${y}`), reason);
+      console.log(eval(`${x} ${operator} ${y}`) + 'is the result for' + x + operator + y
+        , reason);
     });
 
     let consoleClr = errorBtns[5];
